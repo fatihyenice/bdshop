@@ -1,6 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/include/connect.php";
 $sql = "SELECT * FROM table_product ORDER BY product_serie ASC, product_name ASC LIMIT 50";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$recordset = $stmt->fetchAll(PDO::FETCH_ASSOC)
 ?>
 <!DOCTYPE html>
 <html lang="fr">
