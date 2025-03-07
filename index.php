@@ -24,9 +24,23 @@ $recordset = $stmt->fetchAll(PDO::FETCH_ASSOC)
      <main class="container">
         <div class="row">
             <?php foreach($recordset as $row){ ?> 
-                 <article class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <span><?= $row['product_name']; ?></span>
-                </article>
+                <?php if(!empty($row['product_image'])){ ?>
+                    <article class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <h3>
+                            <?= $row['product_name']; ?>&nbsp;
+                            <?= $row['product_serie']; ?> 
+                        </h3>
+                        <img src="/upload/md_<?= $row['product_image']; ?>" alt="Illustration de la couverture de la bande dessinée <?= $row['product_name']; ?> et de la série <?= $row['product_serie']; ?> " class="img-fluid">
+                    </article>
+                <?php }else{ ?>
+                    <article class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <h3>
+                            <?= $row['product_name']; ?>&nbsp;
+                            <?= $row['product_serie']; ?> 
+                        </h3>
+                        <img src="/upload/default.jpg" alt="Illustration de la couverture de la bande dessinée <?= $row['product_name']; ?> et de la série <?= $row['product_serie']; ?> " class="img-fluid">
+                    </article>
+                <?php } ?>
             <?php } ?>
         </div>
     </main>
